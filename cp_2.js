@@ -42,4 +42,5 @@ function displayProducts(products) {
 function errorHandler(error) {
     console.log("Error fetching products:", error);
 
-    
+    fetchProductsThen();
+    fetchProductsAsync();
