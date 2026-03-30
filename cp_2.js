@@ -18,29 +18,32 @@ async function fetchProductsAsync() {
         const response = await fetch(url);
         const data = await response.json();
         displayProducts(data);
-        };
     } catch(error) {
       handleError(error);
     }           
+} 
+
 function displayProducts(products) {
     const container = document.getElementById("product-container");
     products.slice(0, 5).forEach((product) => {
         const card = document.createElement("div");
         card.classList.add("product-card");
-
+ 
         const name =product.fields.name;
         const price = product.fields.price;
         const image = product.fields.image[0].url;
         card.innerHTML = `
-        h3>${name}</h3>
-        img src="${image}" alt="${name}">
-        p>Price: $${price}</p>
+        <h3>${name}</h3>
+        <img src="${image}" alt="${name}">
+        <p>Price: $${price}</p>
         `;
         container.appendChild(card);
     });
 }
+
 function errorHandler(error) {
     console.log("Error fetching products:", error);
 
     fetchProductsThen();
     fetchProductsAsync();
+} // <-- Add this closing brace for errorHandler
